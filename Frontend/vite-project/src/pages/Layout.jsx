@@ -6,7 +6,7 @@ const Layout = () => {
     <div>
       <h1>Layout</h1>
       <div>
-        <Outlet/>
+        <Outlet />
       </div>
     </div>
   )
