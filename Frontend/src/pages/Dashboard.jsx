@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Preview = () => {
+const Dashboard = () => {
   return (
     <div>
-      preview
+      <h1>Dasb</h1>
     </div>
   )
 }
 
-export default Preview
+export default Dashboard
