@@ -4,7 +4,8 @@ import React from 'react'
 const Login = () => {
 
   const query = new URLSearchParams(window.location.search)
-  const [state, setState] = React.useState("login")
+  const urlState =query.get('state')
+  const [state, setState] = React.useState( urlState || "login")
 
   const [formData, setFormData] = React.useState({
     name: '',
@@ -80,14 +81,14 @@ const Login = () => {
         </div>
         
         <div className="mb-4">
-          <button type="button" className="text-indigo-600 text-sm hover:underline">
+          <button type="button" className="text-green-600 text-sm hover:underline">
             Forget password?
           </button>
         </div>
         
         <button 
           type="submit" 
-          className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition-colors mb-4"
+          className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition-colors mb-4"
         >
           {state === "login" ? "Login" : "Sign up"}
         </button>
@@ -97,7 +98,7 @@ const Login = () => {
           <button 
             type="button"
             onClick={() => setState(prev => prev === "login" ? "register" : "login")}
-            className="text-indigo-600 hover:underline"
+            className="text-green-600 hover:underline"
           >
             click here
           </button>
