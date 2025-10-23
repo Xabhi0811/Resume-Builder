@@ -24,6 +24,13 @@ const Dashboard = () => {
    navigate(`/app/builder/res123`)
   }
 
+  const uploadResume =async(event)=>{
+     event.preventDefault()
+     setShowUploadResume(false)
+     navigate(`/app/builder/res123`)
+
+  }
+
   useEffect(()=>{
     loadAllResumes()
   },[])
@@ -47,7 +54,7 @@ const Dashboard = () => {
         </button>
 
         {/* Upload Existing Card */}
-        <button className='w-full max-w-80 bg-white h-64 flex flex-col items-center justify-center rounded-xl gap-4 text-slate-700 border-2 border-dashed border-slate-200 group hover:border-purple-500 hover:shadow-xl transition-all duration-300 cursor-pointer hover:bg-purple-50/30'>
+        <button onClick={()=> setShowUploadResume(true)} className='w-full max-w-80 bg-white h-64 flex flex-col items-center justify-center rounded-xl gap-4 text-slate-700 border-2 border-dashed border-slate-200 group hover:border-purple-500 hover:shadow-xl transition-all duration-300 cursor-pointer hover:bg-purple-50/30'>
           <div className='flex flex-col items-center gap-4'>
             <div className='p-4 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full group-hover:scale-110 transition-all duration-300 shadow-lg'>
               <UploadCloudIcon className='size-8 text-white'/>
@@ -143,6 +150,8 @@ const Dashboard = () => {
                       )}
                     </div>
                   </label>
+                  <input type='file' id='resume-input' accept='.pdf' hidden 
+                  onChange={(e)=>setResume(e.target.files[0])}  />
                 </div>
                 <button className='w-full py-2 bg-green-600 text-white
                  rounded hover:bg-green-700 transition-colors'>Upload resume</button>
