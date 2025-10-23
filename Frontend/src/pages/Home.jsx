@@ -5,7 +5,6 @@ import Hero from '../components/home/Hero'
 const Home = () => {
   return (
     <div>
-     
      <Banner/>
      <Hero />
     </div>
