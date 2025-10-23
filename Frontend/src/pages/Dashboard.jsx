@@ -34,7 +34,11 @@ const Dashboard = () => {
    const editTitle =async(event)=>{
      event.preventDefault()
      
+   }
 
+   const deleteResume =async(resumeId)=>{
+     event.preventDefault()
+     
    }
 
   useEffect(()=>{
