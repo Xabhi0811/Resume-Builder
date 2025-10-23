@@ -1,4 +1,4 @@
-import { FilePenLineIcon, PencilIcon, PlusIcon, TrashIcon, UploadCloudIcon, XIcon } from 'lucide-react'
+import { FilePenLineIcon, PencilIcon, PlusIcon, TrashIcon, UploadCloud, UploadCloudIcon, XIcon } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import{dummyResumeData} from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
@@ -125,6 +125,25 @@ const Dashboard = () => {
                 <h2 className='text-xl font-bold mb-4'>Upload  Resume</h2>
                 <input onChange={(e)=>setTitle(e.target.value)} value={title} type='text' placeholder='Enter resume title' className='w-full
                 px-4 py-2 mb-4 focus:border-green-600' required />
+                <div>
+                  <label htmlFor='resume-input' className='block text-sm
+                  text-slate-700'>
+                    Select resume file
+                    <div className="flex flex-col items-center justify-center
+                    gap-2 border group text-slate-400 border-slate-400
+                    border-dashed rounded-md p-4 py-10 my-4 hover:border-green-500
+                    hover:text-green-700 cursor-pointer transition-colors">
+                      {resume ?(
+                        <p className='text-green-700'>{resume.name}</p>
+                      ):(
+                        <>
+                        <UploadCloud className='size-14 stroke-1' />
+                        <p>Upload resume</p>
+                        </>
+                      )}
+                    </div>
+                  </label>
+                </div>
                 <button className='w-full py-2 bg-green-600 text-white
                  rounded hover:bg-green-700 transition-colors'>Upload resume</button>
                  <XIcon className='absolute top-4 right-4 text-slate-400
