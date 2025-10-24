@@ -1,11 +1,26 @@
-import { User } from 'lucide-react'
+import { BriefcaseBusiness, Globe, Linkedin, MapPin, User } from 'lucide-react'
 import React from 'react'
 
 const PersonalInfoForm = ({data , onChange, removeBackground, setRemoveBackground}) => {
      
   const handleChange =(field, value)=>{
      onChange({...data, [field]: value})
-  }
+  }  
+
+  const fields = [
+    {Key: "full_name", label: "Full Name", icon: User , type: "text", required:true},
+
+    {Key: "email", label: "Email Address", icon: Mail , type: "email", required:true},
+      {Key: "phone", label: "Phone Number", icon: Phone , type: "tel"},
+        {Key: "location", label: "Location", icon: MapPin , type: "text", },
+        {Key: "profession", label: "Profession", icon: BriefcaseBusiness , type: "text"},
+         {Key: "Linkedin", label: "LinkedIn Profile", icon: Linkedin , type: "text"},
+              {Key: "website", label: "Personal Website", icon: Globe , type: "url"}
+  
+ 
+  
+  
+  ]
   
   return (
     <div>
@@ -40,13 +55,27 @@ const PersonalInfoForm = ({data , onChange, removeBackground, setRemoveBackgroun
             <div className="w-9 h-5 bg-slate-300 rounded-full peer
             peer-checked:bg-green-600 transition-colors duration-200">
             </div>
-            <span className='dot absolute left-1 top-1 w-3 h-3 bg-white
+            <span className='dot absolute left-1 top-1w-3 h-3 bg-white
             rounded-full transition-transform duration-200
              ease-in-out peer-checked:translate-x-4'></span>
           </label>
           </div>
       )}
      </div>
+
+
+
+{fields.map((field)=>{
+   const Icon = field.icon;
+   return (
+    <div key={field.key} className="space-y-1 mt-5">
+      <label className='flex items-center gap-2 text-sm font-medium
+      text-gray-600'> <Icon/></label>
+    </div>
+   )
+})}
+
+
     </div>
   )
 }

@@ -98,8 +98,7 @@ const ResumeBuilder = () => {
               {activeSection.id === 'personal' && (
                 <PersonalInfoForm data={resumeData.personal_info} 
                 onChange={(data)=>setResumeData(prev =>({...prev, personal_info:
-                  data
-                }))}  removeBackground={removeBackground} 
+                  data}))}  removeBackground={removeBackground} 
                 setRemoveBackground={setRemoveBackground}/>
               )}
 
