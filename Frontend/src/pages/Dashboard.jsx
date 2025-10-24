@@ -37,8 +37,10 @@ const Dashboard = () => {
    }
 
    const deleteResume =async(resumeId)=>{
-     event.preventDefault()
-     
+     const confirm = window.confirm('Are you sure you want to delete this resume?')
+      if(confirm){
+        setAllResumes(prev =>prev.filter(resume => resume._id !==resumeId))
+      }
    }
 
   useEffect(()=>{
@@ -85,8 +87,8 @@ const Dashboard = () => {
              return(
               <button key={index} onClick={()=> navigate(`/app/builder/${resume._id}`)} className='relative w-full sm:max-w-36 h-48 flex flex-col items-center justify-center 
               rounded-lg gap-2 border group hover:shadow-lg transition-all duration-300 cursor-pointer' style=
-              {{background:`linear-gradient(135deg, ${baseColor}10),${baseColor}40)
-               `,borderColor: baseColor +'40'}}>
+              {{background:`linear-gradient(135deg, ${baseColor}10, ${baseColor}40)`,
+               borderColor: baseColor +'40'}}>
                 
                 <FilePenLineIcon className='size-7 group-hover:scale-105
                 transition-all' style={{color: baseColor}}/>
@@ -100,7 +102,7 @@ const Dashboard = () => {
                   </p>
                   <div onClick={e=> e.stopPropagation()} className='absolute top-1 right-1 group-hover:flex items-center
                   hidden'>
-                    <TrashIcon className='size-7 p-1.5 hover:bg-white/50 rounded
+                    <TrashIcon onClick={()=>deleteResume(resume._id)} className='size-7 p-1.5 hover:bg-white/50 rounded
                     text-slate-700 transition-colors'/>
                     <PencilIcon onClick={()=> {setEditResumeId(resume._id); setTitle(resume.title)
 
@@ -179,7 +181,7 @@ const Dashboard = () => {
 
           }
           
-           {editResumeId &&(
+          {editResumeId &&(
             <form onSubmit={editTitle} onClick={()=>setEditResumeId('')} className='fixed inset-0
              bg-black/70 backdrop-blur bg-opacity-50 z-10 flex 
              items-center justify-center'>
@@ -197,8 +199,8 @@ const Dashboard = () => {
                 
               </div>
              </form>
-
-        </div>
+          )}
+        </div>      
       </div>      
     </div>
   )
