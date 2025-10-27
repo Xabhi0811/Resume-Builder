@@ -15,7 +15,7 @@ import SkillsForm from '../components/SkillsForm'
 
 const ResumeBuilder = () => {
 
-  const {resumeId} = useParams
+  const {resumeId} = useParams();
   const [resumeData , setResumeData] = useState({
     _id: '',
     title: '',
@@ -31,7 +31,8 @@ const ResumeBuilder = () => {
   })
 
   const loasExistingResume =async () =>{
-    const resume = dummyResumeData.find(resume => resume.id == resumeId)
+    const resume = dummyResumeData.find(resume => resume._id === resumeId)
+
     if(resume){
       setResumeData(resume)
       document.title = resume.title
