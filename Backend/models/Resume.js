@@ -53,3 +53,8 @@
 
 
  }, {timestamps: true, minimize:false})
+
+
+ const Resume = mongoose.model('Resume', ResumeSchema)
+
+ export default  Resume
