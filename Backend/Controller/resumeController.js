@@ -9,7 +9,7 @@ export const createResume = async (req, res)=>{
 
         const newResume = await Resume.create({userId , title})
 
-        return res.status(400).json({message: 'resume create successfully', resume: newResume})
+        return res.status(201).json({message: 'resume create successfully', resume: newResume})
     } catch (error) {
          return res.status(400).json({message: error.message})
     }
