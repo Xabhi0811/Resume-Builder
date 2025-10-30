@@ -1,13 +1,12 @@
 import express from 'express'
-import { getUserById, getUserResumes, loginUser, registerUser } from '../Controller/userController'
-import protect from '../middlewares/authmiddleware'
-
+import { getUserById, getUserResumes, loginUser, registerUser } from '../Controller/userController.js'
+import protect from '../middlewares/authmiddleware.js'
 
 const userRouter = express.Router()
 
-userRouter.post('/register' , registerUser)
+userRouter.post('/register', registerUser)
 userRouter.post('/login', loginUser)
 userRouter.get('/data', protect, getUserById)
 userRouter.get('/resumes', protect, getUserResumes)
 
-export default userRouter;
+export default userRouter

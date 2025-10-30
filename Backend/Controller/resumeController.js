@@ -1,5 +1,5 @@
-import imagekit from "../config/imageKit";
-import Resume from "../models/Resume";
+import imagekit from "../config/imageKit.js";
+import Resume from "../models/Resume.js";
 import fs from 'fs'
 
 export const createResume = async (req, res)=>{
@@ -34,10 +34,9 @@ export const getResumeById = async(req,res)=>{
     try {
         const userId = req.userId;
         const {resumeId} = req.params
-        await Resume.findOneAndDelete({userId, _id: resumeId})
 
-
-         const resume = await Resume.findOne({userId, _id: resumeId})
+        const resume = await Resume.findOne({userId, _id: resumeId})
+        
         if(!resume){
             return res.status(404).json({message: "Resume not found"})
         }

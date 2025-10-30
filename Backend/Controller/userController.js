@@ -1,7 +1,7 @@
-import Resume from "../models/Resume"
-import User from '/bcrypt'
-import jwt from 'jsonwebtoken'
-import User from "../models/User.js"
+import Resume from "../models/Resume.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import User from "../models/User.js";
 
 
 const generateToken = (userId) =>{
