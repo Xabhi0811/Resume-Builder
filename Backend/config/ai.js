@@ -1,13 +1,8 @@
-import { GoogleGenAI } from "@google/genai";
+import OpenAI from "openai"
 
-const ai = new GoogleGenAI({});
+const ai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY ,
+  baseURL: process.env.OPENAI_BASE_URL,
+});
 
-async function main() {
-  const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
-    contents: "Explain how AI works in a few words",
-  });
-  console.log(response.text);
-}
-
-await main();
+export default ai
