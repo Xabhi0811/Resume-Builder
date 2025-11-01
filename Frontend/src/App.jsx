@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import { useDispatch } from 'react-redux'
 import { login, setLoading } from './app/features/authSlice'
 import api from './configs/api'
+import {Toaster} from 'react-hot-toast'
 
 const App = () => {
 
@@ -38,6 +39,8 @@ const App = () => {
 
 
   return (
+    <>
+    <Toaster/ >
     <Routes>
       {/* Public routes */}
       <Route path='/' element={<Home />} />
@@ -50,6 +53,7 @@ const App = () => {
         <Route path='builder/:resumeId' element={<ResumeBuilder />} />
       </Route>
     </Routes>
+    </>
   )
 }
 
