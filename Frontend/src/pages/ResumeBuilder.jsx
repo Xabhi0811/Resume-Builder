@@ -69,7 +69,7 @@ const ResumeBuilder = () => {
        const forData = new FormData()
        forData.append("resumeId", resumeId)
        forData.append("resumeData", JSON.stringify({public: !resumeData.public}))
-           const {data} = await api.put('/api/resumes/update', formData,{headers:{Authorization: token}})
+           const {data} = await api.put('/api/resumes/update', forData,{headers:{Authorization: token}})
            setResumeData({...resumeData, public: !resumeData.public})
            toast.success(data.message)
 
