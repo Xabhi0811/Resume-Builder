@@ -1,7 +1,12 @@
 import { Briefcase, Plus, Sparkles, Trash2 } from 'lucide-react'
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import api from '../configs/api'
+import toast from 'react-hot-toast'
 
 const ExperienceForm = ({data , onChange}) => {
+  const {token} = useSelector(state => state.auth)
+  const [generatingIndex , setGeneratingIndex] = useState(-1)
      const addExperience = () =>{
         const newExperience ={
             company: "",
@@ -23,6 +28,25 @@ const ExperienceForm = ({data , onChange}) => {
         const updated = [...data];
         updated[index] = {...updated[index], [field]: value}
         onChange(updated)
+     }
+
+     const generateDescripation =async (index) =>{
+      setGeneratingIndex(index)
+      const experience = data[index]
+      const prompt =`enhance this job description${experience.descripation} for the position of
+       ${experience.position} at ${experience.company}.`
+
+       try {
+        const {data} = await api.post('api/ai/enhance-job-desc',{ userContent: prompt},
+          {headers: {Authorization:token}}
+        )
+        updateExperience(index , "descripation", data.enhancedContent)
+        
+       } catch (error) {
+        toast.error(error.message)
+       } finally {
+        setGeneratingIndex(-1)
+       }
      }
   return (
     <div className='space-y-6'>
