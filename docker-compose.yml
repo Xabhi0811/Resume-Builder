@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  backend:
+    image: your-docker-username/backend-app
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend/.env
+
+  frontend:
+    image: your-docker-username/frontend-app
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
