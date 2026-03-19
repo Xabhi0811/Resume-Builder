@@ -16,9 +16,12 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
           script: |
             docker pull xabhi/backend-app
             docker pull xabhi/frontend-app
+
+            docker network inspect app-network >/dev/null 2>&1 || docker network create app-network
 
             docker rm -f backend frontend || true
 
