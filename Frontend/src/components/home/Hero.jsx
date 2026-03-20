@@ -20,7 +20,7 @@ const Hero = () => {
                 {/* Navbar */}
                 <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
                     <a href="https://prebuiltui.com">
-                    <img src='/logo.svg' alt='logo' className='h-11 w-auto' />
+                    <img src='/Gemini_Generated_Image_lkii7rlkii7rlkii.png' alt='logo' className='h-11 w-auto' />
                         
                     </a>
 
@@ -97,7 +97,7 @@ const Hero = () => {
 
                     {/* CTA Buttons */}
                     <div className="flex items-center gap-4 ">
-                        <Link to='/' className="bg-green-500 hover:bg-green-600 text-white rounded-full px-9 h-12 m-1 ring-offset-2 ring-1 ring-green-400 flex items-center transition-colors">
+                        <Link to='/' className="bg-blue-500 hover:bg-green-600 text-white rounded-full px-9 h-12 m-1 ring-offset-2 ring-1 ring-green-400 flex items-center transition-colors">
                             Get started
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right ml-1 size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                         </Link>
