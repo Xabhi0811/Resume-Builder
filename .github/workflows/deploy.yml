@@ -1,30 +1,49 @@
-script: |
-  docker pull xabhi/backend-app
-  docker pull xabhi/frontend-app
-  docker pull mongo
+name: Deploy to EC2
 
-  docker network inspect app-network >/dev/null 2>&1 || docker network create app-network
+on:
+  push:
+    branches:
+      - main
 
-  docker rm -f backend frontend mongo || true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-  # ✅ Start MongoDB
-  docker run -d \
-    --name mongo \
-    --network app-network \
-    -p 27017:27017 \
-    mongo
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          script: |
+            docker pull xabhi/backend-app
+            docker pull xabhi/frontend-app
+            docker pull mongo
 
-  # ✅ Start Backend
-  docker run -d \
-    --name backend \
-    --network app-network \
-    -p 5000:5000 \
-    --env-file .env \
-    xabhi/backend-app
+            docker network inspect app-network >/dev/null 2>&1 || docker network create app-network
 
-  # ✅ Start Frontend
-  docker run -d \
-    --name frontend \
-    --network app-network \
-    -p 3000:80 \
-    xabhi/frontend-app
+            docker rm -f backend frontend mongo || true
+
+            # Start MongoDB
+            docker run -d \
+              --name mongo \
+              --network app-network \
+              -p 27017:27017 \
+              mongo
+
+            # Start Backend
+            docker run -d \
+              --name backend \
+              --network app-network \
+              -p 5000:5000 \
+              --env-file .env \
+              xabhi/backend-app
+
+            # Start Frontend
+            docker run -d \
+              --name frontend \
+              --network app-network \
+              -p 3000:80 \
+              xabhi/frontend-app
