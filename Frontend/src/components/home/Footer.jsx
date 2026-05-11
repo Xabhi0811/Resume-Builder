@@ -3,41 +3,44 @@ import React from 'react'
 const Footer = () => {
   return (
     <>
-    <footer className="flex flex-wrap justify-center lg:justify-between overflow-hidden gap-10 md:gap-20 py-16 px-6 md:px-16 lg:px-24 xl:px-32 text-[13px] text-gray-500 bg-gradient-to-r from-white via-green-200/60 to-white mt-40 ">
-                <div className="flex flex-wrap items-start gap-10 md:gap-[60px] xl:gap-[140px]">
-                    <a href="#">
-                       <img src='/logo.svg' alt='logo' className='h-11 w-auto' />
-                    </a>
+    <footer className="mt-16 border-t border-white/70 bg-slate-950 px-6 py-16 text-sm text-slate-300 md:px-16 lg:px-24 xl:px-32">
+                <div className="mx-auto flex max-w-7xl flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
+                    <div className="max-w-sm">
+                       <img src='/logo.svg' alt='logo' className='h-11 w-auto brightness-0 invert' />
+                       <p className="mt-4 text-slate-400 leading-7">A focused resume builder that helps users create, edit, and export polished resumes with confidence.</p>
+                    </div>
+                    <div className="grid gap-10 sm:grid-cols-3">
                     <div>
-                        <p className="text-slate-800 font-semibold">Product</p>
-                        <ul className="mt-2 space-y-2">
-                            <li><a href="/" className="hover:text-green-600 transition">Home</a></li>
-                            <li><a href="/" className="hover:text-green-600 transition">Support</a></li>
-                            <li><a href="/" className="hover:text-green-600 transition">Pricing</a></li>
-                            <li><a href="/" className="hover:text-green-600 transition">Affiliate</a></li>
+                        <p className="font-semibold text-white">Product</p>
+                        <ul className="mt-3 space-y-2 text-slate-400">
+                            <li><a href="/" className="transition hover:text-white">Home</a></li>
+                            <li><a href="/" className="transition hover:text-white">Support</a></li>
+                            <li><a href="/" className="transition hover:text-white">Pricing</a></li>
+                            <li><a href="/" className="transition hover:text-white">Affiliate</a></li>
                         </ul>
                     </div>
                     <div>
-                        <p className="text-slate-800 font-semibold">Resources</p>
-                        <ul className="mt-2 space-y-2">
-                            <li><a href="/" className="hover:text-green-600 transition">Company</a></li>
-                            <li><a href="/" className="hover:text-green-600 transition">Blogs</a></li>
-                            <li><a href="/" className="hover:text-green-600 transition">Community</a></li>
-                            <li><a href="/" className="hover:text-green-600 transition">Careers<span className="text-xs text-white bg-green-600 rounded-md ml-2 px-2 py-1">We’re hiring!</span></a></li>
-                            <li><a href="/" className="hover:text-green-600 transition">About</a></li>
+                        <p className="font-semibold text-white">Resources</p>
+                        <ul className="mt-3 space-y-2 text-slate-400">
+                            <li><a href="/" className="transition hover:text-white">Company</a></li>
+                            <li><a href="/" className="transition hover:text-white">Blogs</a></li>
+                            <li><a href="/" className="transition hover:text-white">Community</a></li>
+                            <li><a href="/" className="transition hover:text-white">Careers <span className="ml-2 rounded-full bg-emerald-500/20 px-2 py-1 text-xs text-emerald-300">We’re hiring!</span></a></li>
+                            <li><a href="/" className="transition hover:text-white">About</a></li>
                         </ul>
                     </div>
                     <div>
-                        <p className="text-slate-800 font-semibold">Legal</p>
-                        <ul className="mt-2 space-y-2">
-                            <li><a href="/" className="hover:text-green-600 transition">Privacy</a></li>
-                            <li><a href="/" className="hover:text-green-600 transition">Terms</a></li>
+                        <p className="font-semibold text-white">Legal</p>
+                        <ul className="mt-3 space-y-2 text-slate-400">
+                            <li><a href="/" className="transition hover:text-white">Privacy</a></li>
+                            <li><a href="/" className="transition hover:text-white">Terms</a></li>
                         </ul>
+                    </div>
                     </div>
                 </div>
-                <div className="flex flex-col max-md:items-center max-md:text-center gap-2 items-end">
-                    <p className="max-w-60">Making every customer feel valued—no matter the size of your audience.</p>
-                    <div className="flex items-center gap-4 mt-3">
+                <div className="mx-auto mt-12 flex max-w-7xl flex-col gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
+                    <p className="max-w-xl text-slate-400">Making every customer feel valued, no matter the size of your audience.</p>
+                    <div className="flex items-center gap-4">
                         <a href="https://my-protfolio-six-theta.vercel.app/" target="_blank" rel="noreferrer">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-dribbble size-5 hover:text-green-500" aria-hidden="true">
                                 <circle cx="12" cy="12" r="10"></circle>
@@ -60,15 +63,13 @@ const Footer = () => {
                                 </path>
                             </svg>
                         </a>
-                        <a href="https://github.com/Xabhi0811" target="_blank" rel="noreferrer">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-youtube size-6 hover:text-green-500" aria-hidden="true">
-                                <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17">
-                                </path>
-                                <path d="m10 15 5-3-5-3z"></path>
+                        <a href="https://github.com/Xabhi0811/Resume-Builder" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="size-5 hover:text-green-500" aria-hidden="true">
+                                <path d="M12 2a10 10 0 0 0-3.162 19.5c.5.09.682-.217.682-.483 0-.238-.009-.868-.014-1.703-2.782.603-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.07 1.532 1.03 1.532 1.03.892 1.53 2.341 1.088 2.91.832.09-.646.35-1.088.635-1.34-2.22-.253-4.555-1.11-4.555-4.945 0-1.091.39-1.984 1.03-2.683-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.56 9.56 0 0 1 12 6.84c.85.004 1.705.115 2.505.338 1.91-1.295 2.748-1.025 2.748-1.025.546 1.378.203 2.397.1 2.65.64.699 1.03 1.592 1.03 2.683 0 3.845-2.338 4.688-4.566 4.936.36.31.679.92.679 1.856 0 1.34-.012 2.421-.012 2.75 0 .268.18.578.688.48A10 10 0 0 0 12 2z" />
                             </svg>
                         </a>
                     </div>
-                    <p className="mt-3 text-center">© 2025 <a href="https://xabhi.duckdns.org/">Abhishek</a></p>
+                    <p className="text-slate-500">© 2025 <a href="https://xabhi.duckdns.org/" className="text-white transition hover:text-emerald-300">Abhishek</a></p>
                 </div>
             </footer>
          <style>{`

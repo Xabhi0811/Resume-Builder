@@ -7,12 +7,12 @@ const Hero = () => {
     const {user} = useSelector(state => state.auth) 
       const [menuOpen, setMenuOpen] = React.useState(false);
 
-    const logos = [
-        'https://saasly.prebuiltui.com/assets/companies-logo/instagram.svg',
-        'https://saasly.prebuiltui.com/assets/companies-logo/framer.svg',
-        'https://saasly.prebuiltui.com/assets/companies-logo/microsoft.svg',
-        'https://saasly.prebuiltui.com/assets/companies-logo/huawei.svg',
-        'https://saasly.prebuiltui.com/assets/companies-logo/walmart.svg',
+    const trustedBrands = [
+        { name: 'Studio', tone: 'from-indigo-500 to-violet-600' },
+        { name: 'Nova', tone: 'from-emerald-500 to-green-600' },
+        { name: 'Vector', tone: 'from-sky-500 to-cyan-600' },
+        { name: 'Pulse', tone: 'from-amber-500 to-orange-600' },
+        { name: 'Orbit', tone: 'from-rose-500 to-pink-600' },
     ]
   return (
     <>
@@ -122,8 +122,15 @@ const Hero = () => {
 
                     <p className="py-6 text-slate-600 mt-14">Trusting by leading brands, including</p>
 
-                    <div className="flex flex-wrap justify-between max-sm:justify-center gap-6 max-w-3xl w-full mx-auto py-4" id="logo-container">
-                        {logos.map((logo, index) => <img key={index} src={logo} alt="logo" className="h-6 w-auto max-w-xs" />)}
+                    <div className="flex flex-wrap justify-center gap-4 max-w-4xl w-full mx-auto py-4" id="logo-container">
+                        {trustedBrands.map((brand) => (
+                            <div key={brand.name} className="flex items-center gap-3 rounded-full border border-slate-200 bg-white/80 px-4 py-2 shadow-sm backdrop-blur">
+                                <span className={`grid size-8 place-items-center rounded-full bg-gradient-to-br ${brand.tone} text-[11px] font-semibold text-white shadow-sm`}>
+                                    {brand.name.slice(0, 2)}
+                                </span>
+                                <span className="text-sm font-medium text-slate-700">{brand.name}</span>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

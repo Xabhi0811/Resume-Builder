@@ -8,13 +8,15 @@ import Footer from '../components/home/Footer'
 
 const Home = () => {
   return (
-    <div>
-     <Banner/>
-     <Hero />
-     <Features/>
-     <Testimonial/>
-     <CallToAction/>
-     <Footer/>
+    <div className='min-h-screen overflow-x-hidden bg-[radial-gradient(circle_at_top,_rgba(34,197,94,0.10),_transparent_24%),linear-gradient(180deg,_#ffffff_0%,_#f8fafc_45%,_#f0fdf4_100%)] text-slate-900'>
+     <Banner />
+     <main className='relative'>
+       <Hero />
+       <Features />
+       <Testimonial />
+       <CallToAction />
+     </main>
+     <Footer />
     </div>
   )
 }

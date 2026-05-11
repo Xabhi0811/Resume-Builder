@@ -46,33 +46,38 @@ const Testimonial = () => {
 
   return (
     <>
-      < div id='features' className='flex flex-col items-center my-10 scroll-m-12'>
+      <section id='testimonials' className='scroll-m-16 px-4 py-20 sm:py-24'>
+      <div className='mx-auto max-w-7xl rounded-[2rem] border border-white/70 bg-white/75 px-4 py-8 shadow-[0_20px_80px_rgba(15,23,42,0.07)] backdrop-blur-sm sm:px-8 lg:px-10 lg:py-12'>
+      <div className='flex flex-col items-center'>
 
-        <div className="flex items-center gap-2 text-sm text-green-600 bg-green-400/10  rounded-full px-4 py-1.5">
+        <div className="flex items-center gap-2 rounded-full bg-green-500/10 px-4 py-1.5 text-sm text-green-700">
        <BookUserIcon className='size-4.5 stroke-green-600' />
     <span>Simple Process</span>
        </div>
-       <Title title=" Don't just take our words" description="Hear what out users say about us. We're always looking for ways to improve. If you have a position experience with us, leave a review."/>
+       <Title title="Don't just take our word" description="Hear what users say about the experience. The page is built to feel trustworthy, practical, and easy to use."/>
       </div>
-      <div className="marquee-row w-full mx-auto max-w-5xl overflow-hidden relative">
-                <div className="absolute left-0 top-0 h-full w-20 z-10 pointer-events-none bg-gradient-to-r from-white to-transparent"></div>
-                <div className="marquee-inner flex transform-gpu min-w-[200%] pt-10 pb-5">
+      <div className="marquee-row relative mx-auto mt-10 w-full max-w-6xl overflow-hidden">
+                <div className="absolute left-0 top-0 z-10 h-full w-16 pointer-events-none bg-gradient-to-r from-white to-transparent"></div>
+                <div className="marquee-inner flex min-w-[200%] transform-gpu gap-4 pt-6 pb-5">
                     {[...cardsData, ...cardsData].map((card, index) => (
                         <CreateCard key={index} card={card} />
                     ))}
                 </div>
-                <div className="absolute right-0 top-0 h-full w-20 md:w-40 z-10 pointer-events-none bg-gradient-to-l from-white to-transparent"></div>
+                <div className="absolute right-0 top-0 z-10 h-full w-16 md:w-32 pointer-events-none bg-gradient-to-l from-white to-transparent"></div>
             </div>
 
-            <div className="marquee-row w-full mx-auto max-w-5xl overflow-hidden relative">
-                <div className="absolute left-0 top-0 h-full w-20 z-10 pointer-events-none bg-gradient-to-r from-white to-transparent"></div>
-                <div className="marquee-inner marquee-reverse flex transform-gpu min-w-[200%] pt-10 pb-5">
+            <div className="marquee-row relative mx-auto mt-4 w-full max-w-6xl overflow-hidden">
+                <div className="absolute left-0 top-0 z-10 h-full w-16 pointer-events-none bg-gradient-to-r from-white to-transparent"></div>
+                <div className="marquee-inner marquee-reverse flex min-w-[200%] transform-gpu gap-4 pt-6 pb-5">
                     {[...cardsData, ...cardsData].map((card, index) => (
                         <CreateCard key={index} card={card} />
                     ))}
                 </div>
-                <div className="absolute right-0 top-0 h-full w-20 md:w-40 z-10 pointer-events-none bg-gradient-to-l from-white to-transparent"></div>
+                <div className="absolute right-0 top-0 z-10 h-full w-16 md:w-32 pointer-events-none bg-gradient-to-l from-white to-transparent"></div>
             </div>
+
+      </div>
+      </section>
 
              <style>{`
             @keyframes marqueeScroll {
