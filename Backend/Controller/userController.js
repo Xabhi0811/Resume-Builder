@@ -14,7 +14,7 @@ const generateToken = (userId) =>{
 export const registerUser = async (req , res)=>{
     try {
          const  {name , email , password} = req.body
-         if(!name, !email , !password){
+         if(!name || !email || !password){
             return res.status(400).json({message: 'Missing required fields'})
          }
 
@@ -34,7 +34,7 @@ export const registerUser = async (req , res)=>{
 
          return res.status(201).json({message: 'User created successfully', token , user: newUser})
     } catch (error) {
-         return res.status(400).json.json({message: error.message})
+         return res.status(400).json({message: error.message})
     
     }
 }

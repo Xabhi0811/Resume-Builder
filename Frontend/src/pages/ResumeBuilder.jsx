@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link ,useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { dummyResumeData } from '../assets/assets'
 import { ArrowLeftIcon , Briefcase, ChevronLeft, ChevronRight, DownloadIcon, EyeIcon, EyeOffIcon, FileText, FolderIcon, GraduationCap, Share2Icon, Sparkles, User } from 'lucide-react'
 import PersonalInfoForm from '../components/PersonalInfoForm'
@@ -19,7 +19,8 @@ import { useSelector } from 'react-redux'
 const ResumeBuilder = () => {
 
   const {resumeId} = useParams();
-  const {token} = useSelector(state => state.auth)
+  const navigate = useNavigate()
+  const {token, user} = useSelector(state => state.auth)
   const [resumeData , setResumeData] = useState({
     _id: '',
     title: '',
@@ -34,7 +35,7 @@ const ResumeBuilder = () => {
     public: false,
   })
 
-  const loasExistingResume =async () =>{
+  const loadExistingResume =async () =>{
    try {
     
     const {data} = await api.get('/api/resumes/get/' + resumeId ,{headers:{Authorization: token}})
@@ -61,15 +62,15 @@ const ResumeBuilder = () => {
   const activeSection = sections[activeSectionIndex]
 
   useEffect(()=>{
-    loasExistingResume()
+    loadExistingResume()
   },[])
 
   const ChangeResumeVisibility = async ( ) =>{
     try {
-       const forData = new FormData()
-       forData.append("resumeId", resumeId)
-       forData.append("resumeData", JSON.stringify({public: !resumeData.public}))
-           const {data} = await api.put('/api/resumes/update', forData,{headers:{Authorization: token}})
+       const formData = new FormData()
+       formData.append("resumeId", resumeId)
+       formData.append("resumeData", JSON.stringify({public: !resumeData.public}))
+           const {data} = await api.put('/api/resumes/update', formData,{headers:{Authorization: token}})
            setResumeData({...resumeData, public: !resumeData.public})
            toast.success(data.message)
 
@@ -117,10 +118,11 @@ const ResumeBuilder = () => {
   return (
     <div>
      <div className="max-w-7xl mx-auto px-4 py-6">
-      <Link to={'/app'} className='inline-flex gap-2 items-center text-slate-500
-      hover:text-slate-700 transition-all'>
-      <ArrowLeftIcon className='size-4' /> Back to Dashboard
-      </Link> 
+      {user && token && (
+        <button onClick={() => navigate('/app')} className='inline-flex gap-2 items-center text-slate-600 hover:text-slate-800 font-medium transition-all hover:gap-3'>
+          <ArrowLeftIcon className='size-5' /> Back to Dashboard
+        </button>
+      )}
      </div>
 
      <div className="max-w-7xl mx-auto px-4 pb-8">

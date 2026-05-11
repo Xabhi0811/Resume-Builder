@@ -32,16 +32,20 @@ const Hero = () => {
                     </div>
 
                     <div className="flex gap-2">
-                        <Link to='/app?state=register'  className="hidden md:block px-6 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white" hidden={user}>
-                            Get started
-                        </Link>
-                        <Link to='/app?state=login' className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900"  hidden={user} >
-                            Login
-                        </Link>
-                        <Link to='/app' className='hidden md:black px-8 py-2 bg-green-500
-                        hover:bg-green-700 active:scale-95 transition-all rounded-full text-white' hidden={!user}>
-                        Dashboard
-                        </Link>
+                        {!user ? (
+                            <>
+                                <Link to='/app?state=register' className="hidden md:block px-6 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white">
+                                    Get started
+                                </Link>
+                                <Link to='/app?state=login' className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900">
+                                    Login
+                                </Link>
+                            </>
+                        ) : (
+                            <Link to='/app' className='hidden md:block px-8 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white'>
+                                Dashboard
+                            </Link>
+                        )}
                     </div>
 
                     <button onClick={() => setMenuOpen(true)} className="md:hidden active:scale-90 transition" >
@@ -57,6 +61,15 @@ const Hero = () => {
                     <a href="#features" className="text-white">Features</a>
                     <a href="#testimonials" className="text-white">Testimonials</a>
                     <a href="c#ontact" className="text-white">Contact</a>
+                    {user ? (
+                        <Link to='/app' className="px-6 py-2 bg-green-600 hover:bg-green-700 transition text-white rounded-full font-medium">
+                            Dashboard
+                        </Link>
+                    ) : (
+                        <Link to='/app?state=login' className="px-6 py-2 bg-green-600 hover:bg-green-700 transition text-white rounded-full font-medium">
+                            Login
+                        </Link>
+                    )}
                     <button onClick={() => setMenuOpen(false)} className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-green-600 hover:bg-green-700 transition text-white rounded-md flex" >
                         X
                     </button>

@@ -68,7 +68,7 @@ const Footer = () => {
                             </svg>
                         </a>
                     </div>
-                    <p className="mt-3 text-center">© 2025 <a href="https://my-protfolio-six-theta.vercel.app/">Abhishek</a></p>
+                    <p className="mt-3 text-center">© 2025 <a href="https://xabhi.duckdns.org/">Abhishek</a></p>
                 </div>
             </footer>
          <style>{`
