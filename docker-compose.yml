@@ -1,41 +1,78 @@
-- name: Deploy via SSH
-  uses: appleboy/ssh-action@v1.0.3
-  with:
-    host: ${{ secrets.EC2_HOST }}
-    username: ${{ secrets.EC2_USER }}
-    key: ${{ secrets.EC2_SSH_KEY }}
+name: Deploy AI Builder
 
-    script: |
-      aws ecr get-login-password --region ap-south-1 | \
-      docker login --username AWS --password-stdin 351405419223.dkr.ecr.ap-south-1.amazonaws.com
+on:
+  push:
+    branches:
+      - main
 
-      docker system prune -af --volumes
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-      docker pull 351405419223.dkr.ecr.ap-south-1.amazonaws.com/ai-builder-backend:latest
-      docker pull 351405419223.dkr.ecr.ap-south-1.amazonaws.com/ai-builder-frontend:latest
+    steps:
+      # Checkout Repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      docker pull mongo:latest
+      # Login to Docker Hub
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-      docker network inspect app-network >/dev/null 2>&1 || docker network create app-network
+      # Build Backend Image
+      - name: Build Backend Image
+        run: |
+          docker build -t xabhi/aibuilder2-backend:latest ./Backend
 
-      docker rm -f backend frontend mongo || true
+      # Push Backend Image
+      - name: Push Backend Image
+        run: |
+          docker push xabhi/aibuilder2-backend:latest
 
-      docker run -d \
-        --name mongo \
-        --network app-network \
-        mongo
+      # Build Frontend Image
+      - name: Build Frontend Image
+        run: |
+          docker build -t xabhi/aibuilder2-frontend:latest ./Frontend
 
-      docker run -d \
-        --name backend \
-        --network app-network \
-        -p 5000:5000 \
-        --restart unless-stopped \
-        --env-file /home/ubuntu/.env \
-        351405419223.dkr.ecr.ap-south-1.amazonaws.com/ai-builder-backend:latest
+      # Push Frontend Image
+      - name: Push Frontend Image
+        run: |
+          docker push xabhi/aibuilder2-frontend:latest
 
-      docker run -d \
-        --name frontend \
-        --network app-network \
-        -p 3000:80 \
-        --restart unless-stopped \
-        351405419223.dkr.ecr.ap-south-1.amazonaws.com/ai-builder-frontend:latest
+      # Deploy on EC2
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+            docker pull xabhi/aibuilder2-backend:latest
+            docker pull xabhi/aibuilder2-frontend:latest
+
+            docker stop aibuilder2-backend || true
+            docker stop aibuilder2-frontend || true
+
+            docker rm aibuilder2-backend || true
+            docker rm aibuilder2-frontend || true
+
+            docker run -d \
+              --name aibuilder2-backend \
+              --restart unless-stopped \
+              --env-file /home/ubuntu/.env \
+              -p 5000:5000 \
+              xabhi/aibuilder2-backend:latest
+
+            docker run -d \
+              --name aibuilder2-frontend \
+              --restart unless-stopped \
+              -p 8080:80 \
+              xabhi/aibuilder2-frontend:latest
+
+            docker image prune -af
+
+            docker ps
