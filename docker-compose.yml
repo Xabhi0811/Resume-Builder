@@ -19,16 +19,16 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build Backend Image
+      - name: Build Backend
         run: docker build -t xabhi/aibuilder2-backend:latest ./Backend
 
-      - name: Push Backend Image
+      - name: Push Backend
         run: docker push xabhi/aibuilder2-backend:latest
 
-      - name: Build Frontend Image
+      - name: Build Frontend
         run: docker build -t xabhi/aibuilder2-frontend:latest ./Frontend
 
-      - name: Push Frontend Image
+      - name: Push Frontend
         run: docker push xabhi/aibuilder2-frontend:latest
 
       - name: Deploy to EC2
@@ -43,7 +43,11 @@ jobs:
             docker pull xabhi/aibuilder2-backend:latest
             docker pull xabhi/aibuilder2-frontend:latest
 
-            docker rm -f aibuilder2-backend aibuilder2-frontend || true
+            docker stop aibuilder2-backend || true
+            docker stop aibuilder2-frontend || true
+
+            docker rm aibuilder2-backend || true
+            docker rm aibuilder2-frontend || true
 
             docker run -d \
               --name aibuilder2-backend \
