@@ -50,9 +50,9 @@ jobs:
             docker rm aibuilder2-frontend || true
 
             docker run -d \
-              --name aibuilder2-backend \
-              --restart unless-stopped \
-              --env-file /home/ubuntu/.env \
+             --name aibuilder2-backend \
+             --restart unless-stopped \
+             --env-file /home/ubuntu/app/.env \
               -p 5000:5000 \
               xabhi/aibuilder2-backend:latest
 
