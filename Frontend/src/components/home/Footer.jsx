@@ -41,7 +41,7 @@ const Footer = () => {
                 <div className="mx-auto mt-12 flex max-w-7xl flex-col gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
                     <p className="max-w-xl text-slate-400">Making every customer feel valued, no matter the size of your audience.</p>
                     <div className="flex items-center gap-4">
-                        <a href="https://my-protfolio-six-theta.vercel.app/" target="_blank" rel="noreferrer">
+                        <a href="https://xabhi.duckdns.org/" target="_blank" rel="noreferrer">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-dribbble size-5 hover:text-green-500" aria-hidden="true">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94"></path>
